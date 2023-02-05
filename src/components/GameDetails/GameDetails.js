@@ -37,15 +37,18 @@ const GameDetails = ({ games, addComment }) => {
         <div className="details-comments">
           <h2>Comments:</h2>
           <ul>
-            <li className="comment">
-              <p>Content: I rate this one quite highly.</p>
-            </li>
-            <li className="comment">
-              <p>Content: The best game.</p>
-            </li>
+            {game.comments?.map((x) => (
+              <li key={x} className="comment">
+                <p>{x}</p>
+              </li>
+            ))}
           </ul>
 
-          <p className="no-comment">No comments.</p>
+          {game.comments?.length > 0 ? (
+            ""
+          ) : (
+            <p className="no-comment">No comments.</p>
+          )}
         </div>
 
         <div className="buttons">
