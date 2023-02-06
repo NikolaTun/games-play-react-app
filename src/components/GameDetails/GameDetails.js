@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 const GameDetails = ({ games, addComment }) => {
   const { gameId } = useParams();
   const [comment, setComment] = useState({ username: "", comment: "" });
+  const [error, setError] = useState({ username: "", comment: "" });
 
   const game = games.find((x) => x._id === gameId);
 
@@ -19,6 +20,22 @@ const GameDetails = ({ games, addComment }) => {
     setComment((state) => ({
       ...state,
       [e.target.name]: e.target.value,
+    }));
+  };
+
+  const validateUsername = (e) => {
+    const username = e.target.value;
+    let msg = "";
+
+    if (username.length < 4) {
+      msg = "Username cannot be less than 5 characters";
+    } else if (username.length > 8) {
+      msg = "Username cannot be more than 8 characters";
+    }
+
+    setError((state) => ({
+      ...state,
+      [e.target.name]: msg,
     }));
   };
 
@@ -69,8 +86,14 @@ const GameDetails = ({ games, addComment }) => {
             name="username"
             placeholder="Jonh Doe"
             onChange={onChange}
+            onBlur={validateUsername}
             value={comment.username}
           />
+
+          {error.username && (
+            <div style={{ color: "red" }}>{error.username}</div>
+          )}
+
           <textarea
             name="comment"
             placeholder="Comment......"
