@@ -12,8 +12,6 @@ const GameDetails = ({ games, addComment }) => {
     e.preventDefault();
 
     addComment(gameId, `${comment.username}: ${comment.comment}`);
-
-    console.log(comment.username, comment.comment);
   };
 
   const onChange = (e) => {
