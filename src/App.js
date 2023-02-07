@@ -6,6 +6,8 @@ import uniqid from "uniqid";
 import * as gameService from "./services/gameService";
 import { authContext } from "./contexts/authContext";
 
+import { useLocalStorage } from "./hooks/useLocalStorage";
+
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
@@ -19,7 +21,7 @@ const Register = lazy(() => import("./components/Register/Register"));
 
 function App() {
   const [games, setGames] = useState([]);
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useLocalStorage("key", {});
   const navigate = useNavigate();
 
   const userLogin = (authData) => {
