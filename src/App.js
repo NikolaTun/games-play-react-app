@@ -2,7 +2,7 @@ import "./App.css";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { useEffect, useState, lazy, Suspense } from "react";
 import uniqid from "uniqid";
-import * as gameService from "./components/services/gameService";
+import * as gameService from "./services/gameService";
 
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
